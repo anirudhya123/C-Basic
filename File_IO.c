@@ -61,6 +61,36 @@ Working with files in C -
 4. In order to read a file we can use fscanf function and will have to open in read mode to achieve that. fscanf(file_pointer,"%format_specifier",String_name)
 5. Using fprintf function we can write into a file as we have to open the file in write mode or append mode. arguments are almost same as scanf
 
+Modes - 
+1. r - Opens for reading only
+2. w - Opens for Writing if not exist creates if exists cleans the file and starts from scratch.
+3. a - Same as W just it doesn't clean exist file writes after it.
+4. r+ - text file open for write and read
+5. w+ - Same for writing and reading functionality same as w.
+6. a+ - Opens for reading and writting. same as a . there is separate use for each other you need experience to understand.
+
+More functions for file handling -
+fputc():
+fputc() is used to write characters to the file. The C in the name of the function stands for character. The function takes two parameters as input. The first one is the single character that we want to input to the file. The second parameter is the pointer to the file. On successful implementation, it returns the character on to the screen. If it couldn't do so in case of any other issue, it would display an EOF exception. EOF stands for End of File. You will see a lot of this exception while working with files.
+
+Syntax: type fputc(‘character’,file_pointer);
+
+fputs():
+fputs() is used to write a null-terminated string to the file. The S in the name of the function stands for string.it also takes two parameters, the same as fputc(). One is the variable storing the string and the second one is the pointer to the file. A null-terminated string is a character string that can be terminated by a null character i.e., \0. You do not have to bother much about null-terminated strings as our computer automatically converts character strings to null-terminated strings.
+
+Syntax: fputs(“string”,file_pointer);
+
+fgetc():
+fgetc() works exactly the opposite of fputc(). It reads the character from the file. It reads only one character at a time. We can print it as many times as we want to get the next character and so on. Its syntax is straightforward, as we have to send the file pointer as a parameter. We can store the character into another character to display it onto the screen.
+
+Syntax: type = fgetc(file_pointer);
+
+fgets():
+fgets() is used to read a string from a file. It takes three parameters as input and stores them in a null terminated array. Now talking about the parameters, the first one is the storage array we want our string to store. The third one is the file pointer, and the second one is the count of variables we want to get from the files. For example, we want to take the first four characters from the string, so we will input the second parameter equals to 5. The purpose of doing that is that the null character will hold the fifth place.
+
+Note: Blank space is also considered as a character.
+
+Syntax: int fgets(const char *s, int n, file_pointer);
 
 Basic Syntax -
 */
@@ -69,15 +99,34 @@ int main(int argc, char const *argv[])
 {
     FILE *ptr = NULL;                                                       // as instructed we have to create a file pointer in order to use the file in whole programme
     char string[250] = "So It will be the end :(.\n "; // here we will store the returned strings from function
+    
     // Reading a File -
     // ptr = fopen("Example.txt","r"); // first argument as file name second one is action
     // fscanf(ptr,"%s",string); // first pointer name , then format specifier as String then the variable we will store returned text.
     // printf("The Text Under this file is  : %s\n ",string); // though it will not return whole file just the string length.
+    
     // writing and appending a file -
     // ptr = fopen("Example.txt", "w"); // first argument as file name second one is action . it will start from scratch means will clean the file and write new 
-    ptr = fopen("Example.txt", "a"); // first argument as file name second one is action using append it will not delete previous content and write after it
-    fprintf(ptr, "%s", string);      // here we will provide the string in case of write or append. see your file has changed for ever.
+    // ptr = fopen("Example.txt", "a"); // first argument as file name second one is action using append it will not delete previous content and write after it
+    // fprintf(ptr, "%s", string);      // here we will provide the string in case of write or append. see your file has changed for ever.
     // using append it is writing after previous thing.
 
+    // More functions
+    ptr = fopen("Example.txt","a");
+    // char c = fgetc(ptr); // it will pick 1st letter from the file
+    // printf("The Character Read is - %c\n",c);
+    // c = fgetc(ptr); // it will pick the second one means when ever you call it, will pick next one 
+    // printf("The Character Read is - %c\n",c);
+
+    // char str[5]; 
+    // fgets(str,4,ptr); // it will pick desired no of character from the file. 1st the variable 2nd number and 3rd file pointer
+    // printf("The String is %s\n",str); 
+
+    fputc('A',ptr);  // it will add a single character at the start .
+    fputs(" Useless meterial is me. ",ptr); // same as just adds a line at the beginning.
+
+
+
+    fclose(ptr);
     return 0;
 }
