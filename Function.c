@@ -1,5 +1,7 @@
 /*
-As C is a procedural language function is most important thing to shorten and increase readabilty of a code. We have to declare define and finally call it to get output. Two types of Function as pre-defined or library function and User define function. It may have argument or return value may have both or not let's see how we can write function in C.
+As C is a procedural language function is most important thing to shorten and increase readabilty of a code. We have to declare define and finally call 
+it to get output. Two types of Function as pre-defined or library function and User define function. It may have argument or return value may have both 
+or not let's see how we can write function in C.
 */
 // Basic Syntax
 #include <stdio.h>
